@@ -11,6 +11,7 @@ function Login() {
         width={300}
         height={300}
         alt="logo"
+        placeholder="blur"
       />
       <button
         onClick={() => {
