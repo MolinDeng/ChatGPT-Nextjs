@@ -6,6 +6,7 @@ import { authOptions } from "./api/auth/[...nextauth]/route";
 import Login from "./components/Login";
 
 import { Inter } from "next/font/google";
+import GitIcon from "./components/GitIcon";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions); // ! this would be a server side page
+  // ??? Why should I pass session to Provider
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -28,9 +30,12 @@ export default async function RootLayout({
             <Login /> // ! client component
           ) : (
             <div className="flex">
-              <div className=" bg-[#202123] max-w-xs h-screen overflow-y-auto md:min-w-[20rem]">
+              <div className="bg-[#202123] max-w-xs h-screen overflow-y-auto md:min-w-[20rem]">
                 <Sidebar />
               </div>
+              {/* <div className="">
+                <GitIcon />
+              </div> */}
               {/* ClientProvider - Notifications */}
               <div className="bg-[#343541] flex-1">{children}</div>
             </div>
