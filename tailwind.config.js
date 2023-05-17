@@ -16,9 +16,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    plugin(function ({ addVariant }) {
-      addVariant("contentEditable", '&[contentEditable="true"]');
-    }),
-  ],
+  plugins: [],
 };

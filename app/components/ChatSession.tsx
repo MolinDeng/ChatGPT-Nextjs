@@ -1,5 +1,5 @@
 function ChatSession({ Chatid }: { Chatid: string }) {
-  return <div>ChatSession</div>;
+  return <div className="flex-1">ChatSession</div>;
 }
 
 export default ChatSession;
