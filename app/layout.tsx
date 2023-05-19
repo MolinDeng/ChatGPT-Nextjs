@@ -2,8 +2,8 @@ import Sidebar from "@/app/components/Sidebar";
 import "./globals.css";
 import { SessionProvider } from "./components/SessionProvider";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
 import Login from "./components/Login";
+import GoogleProvider from "next-auth/providers/google";
 
 import { Inter } from "next/font/google";
 import ToasterProvider from "./components/ToasterProvider";
@@ -20,12 +20,20 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions); // ! this would be a server side page
+  // ! import authOptions from route.ts is not valid when deployinf
+  const session = await getServerSession({
+    providers: [
+      GoogleProvider({
+        clientId: process.env.GOOGLE_ID as string,
+        clientSecret: process.env.GOOGLE_SECRET as string,
+      }),
+    ],
+  }); // ! this would be a server side page
   // ??? Why should I pass session to Provider
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider session={session}>
+        <SessionProvider>
           {!session ? (
             <Login /> // ! client component
           ) : (
