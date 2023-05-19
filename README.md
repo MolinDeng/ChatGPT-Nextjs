@@ -1,7 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with 
+This is a [Next.js](https://nextjs.org/) project bootstrapped with
+
 * [create-next-app](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
-* Firebase
+* Firebase & Firebase-Admin
 * [NextAuth](https://next-auth.js.org/)
+* (react-hook-form)[]
+* [react-hot-toast](https://react-hot-toast.com/docs)
+* (react-firebase-hooks)
+* (react-select)
+* (OpenAI API)
+* [React Hooks for Data Fetching – SWR](https://swr.vercel.app/)
 
 ## Getting Started
 
@@ -25,8 +32,8 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+* [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 

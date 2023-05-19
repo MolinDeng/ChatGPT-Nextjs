@@ -1,11 +1,11 @@
 import ChatInput from "@/app/components/ChatInput";
 import ChatSession from "@/app/components/ChatSession";
 
-function ChatPage({ id }: { id: string }) {
+function ChatPage(props: { params: { id: string; searchParams: {} } }) {
   return (
     <div className="flex flex-col h-screen overflow-hidden">
-      <ChatSession Chatid={id} />
-      <ChatInput Chatid={id} />
+      <ChatSession chatId={props.params.id} />
+      <ChatInput chatId={props.params.id} />
     </div>
   );
 }

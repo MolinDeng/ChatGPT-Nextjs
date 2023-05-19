@@ -1,24 +1,27 @@
 "use client";
 
 import { db } from "@/firebase";
-import { addDoc, collection, serverTimestamp } from "@firebase/firestore";
+import { Timestamp, addDoc, collection } from "@firebase/firestore";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 function NewChat() {
   const router = useRouter();
+
   const { data: session } = useSession();
+
   const createNewChat = async () => {
-    const doc = await addDoc(
+    const docRef = await addDoc(
       collection(db, "users", session?.user?.email!, "chats"),
       {
         messages: [],
         userId: session?.user?.email!,
-        createAt: serverTimestamp(),
+        createAt: Timestamp.now(),
       }
     );
-    router.push(`/chat/${doc.id}`);
+
+    router.push(`/chat/${docRef.id}`);
   };
 
   return (

@@ -1,12 +1,12 @@
 "use client";
 import { db } from "@/firebase";
 import { ChatBubbleLeftIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { collection, deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc } from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useCollection } from "react-firebase-hooks/firestore";
+import { useDocument } from "react-firebase-hooks/firestore";
 
 function ChatRow({ id }: { id: string }) {
   const pathName = usePathname();
@@ -15,9 +15,10 @@ function ChatRow({ id }: { id: string }) {
   const [active, setActive] = useState(false);
 
   // * query chatlog of this chat-session
-  const [messages] = useCollection(
-    collection(db, "users", session?.user?.email!, "chats", id, "messages")
+  const [value] = useDocument(
+    session && doc(db, "users", session?.user?.email!, "chats", id)
   );
+  const messages: [Message] = value?.data()?.messages;
   // * Check if this chat session is active based on path
   useEffect(() => {
     if (!pathName) return;
@@ -37,12 +38,9 @@ function ChatRow({ id }: { id: string }) {
     >
       <ChatBubbleLeftIcon className=" w-5 h-5" />
       <p className="flex-1 hidden md:inline-flex truncate">
-        {messages?.docs[messages?.docs.length - 1]?.data().text || "New Chat"}
+        {(messages && messages[messages.length - 1]?.text) || "New Chat"}
       </p>
-      <TrashIcon
-        onClick={deleteChat}
-        className="w-5 h-5 z-50 hover:text-red-500"
-      />
+      <TrashIcon onClick={deleteChat} className="w-5 h-5 hover:text-red-500" />
     </Link>
   );
 }
