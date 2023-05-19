@@ -29,7 +29,6 @@ export default async function RootLayout({
       }),
     ],
   }); // ! this would be a server side page
-  // ??? Why should I pass session to Provider
   return (
     <html lang="en">
       <body className={inter.className}>

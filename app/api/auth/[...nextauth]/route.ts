@@ -1,6 +1,7 @@
 import NextAuth, { AuthAction, AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
+// ! export authOptions is invalid now
 const authOptions: AuthOptions = {
   // Configure one or more authentication providers
   providers: [
