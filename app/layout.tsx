@@ -1,18 +1,19 @@
-import Sidebar from "@/app/components/Sidebar";
-import "./globals.css";
-import { SessionProvider } from "./components/SessionProvider";
-import { getServerSession } from "next-auth";
-import Login from "./components/Login";
-import GoogleProvider from "next-auth/providers/google";
+import Sidebar from '@/app/components/Sidebar';
+import './globals.css';
+import { SessionProvider } from './components/SessionProvider';
+import { getServerSession } from 'next-auth';
+import Login from './components/Login';
+import GoogleProvider from 'next-auth/providers/google';
 
-import { Inter } from "next/font/google";
-import ToasterProvider from "./components/ToasterProvider";
+import { Inter } from 'next/font/google';
+import ToasterProvider from './components/ToasterProvider';
+import { authOptions } from '@/lib/auth';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: "ChatGPT Messenger",
-  description: "Powered by OpenAI and Next.js",
+  title: 'ChatGPT Messenger',
+  description: 'Powered by OpenAI and Next.js',
 };
 
 export default async function RootLayout({
@@ -21,14 +22,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   // ! import authOptions from route.ts is not valid when deployinf
-  const session = await getServerSession({
-    providers: [
-      GoogleProvider({
-        clientId: process.env.GOOGLE_ID as string,
-        clientSecret: process.env.GOOGLE_SECRET as string,
-      }),
-    ],
-  }); // ! this would be a server side page
+  const session = await getServerSession(authOptions); // ! this would be a server side page
   return (
     <html lang="en">
       <body className={inter.className}>
