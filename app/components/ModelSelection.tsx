@@ -1,20 +1,20 @@
-"use client";
-import useSWR from "swr";
-import React from "react";
-import Select from "react-select";
+'use client';
+import useSWR from 'swr';
+import React from 'react';
+import Select from 'react-select';
 
 const fetcher = async () =>
-  await fetch("/api/model", { method: "GET" }).then((res) => res.json());
+  await fetch('/api/model', { method: 'GET' }).then((res) => res.json());
 
 type Props = {};
 
 function ModelSelection({}: Props) {
-  const { data: models, isLoading } = useSWR("models", fetcher);
-  const { data: model, mutate: setModel } = useSWR("model", {
-    fallbackData: "text-davinci-003",
+  const { data: models, isLoading } = useSWR('models', fetcher);
+  const { data: model, mutate: setModel } = useSWR('model', {
+    fallbackData: 'text-davinci-003',
   });
   return (
-    <div className="mt-2">
+    <div className="mt-2 ">
       <Select
         className="mt-2 react-select"
         options={models?.modelOptions}
